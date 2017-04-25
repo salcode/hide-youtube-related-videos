@@ -1,0 +1,10 @@
+{
+	"name": "sparkweb/hide-youtube-related-videos",
+	"description": "WordPress plugin to prevent the YouTube oEmbed from showing related videos.",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/sparkweb/hide-youtube-related-videos",
+	"license": "GPL-2.0+",
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
