@@ -8,8 +8,11 @@ class Hide_YouTube_Relative_Vidoes_TestCase extends PHPUnit_Framework_TestCase {
 
 	// Example Video Details.
 	const ORIG_VIDEO_URL     = 'https://www.youtube.com/watch?v=cSj-etJL3nI';
+	const ORIG_VIDEO_URL_W_AUTOPLAY = 'https://www.youtube.com/watch?v=cSj-etJL3nI&autoplay=1';
 	const ORIG_VIDEO_EMBED   = '<iframe width="500" height="281" src="https://www.youtube.com/embed/cSj-etJL3nI?feature=oembed" frameborder="0" allowfullscreen></iframe>';
+	const ORIG_VIDEO_EMBED_W_AUTOPLAY = '<iframe width="500" height="281" src="https://www.youtube.com/embed/cSj-etJL3nI?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>';
 	const NO_REL_VIDEO_EMBED = '<iframe width="500" height="281" src="https://www.youtube.com/embed/cSj-etJL3nI?wmode=transparent&amp;rel=0&amp;feature=oembed" frameborder="0" allowfullscreen></iframe>';
+	const NO_REL_VIDEO_EMBED_W_AUTOPLAY = '<iframe width="500" height="281" src="https://www.youtube.com/embed/cSj-etJL3nI?wmode=transparent&amp;rel=0&autoplay=1&amp;feature=oembed" frameborder="0" allowfullscreen></iframe>';
 
 	// Example Playlist Details.
 	const ORIG_PLAYLIST_URL     = 'https://www.youtube.com/playlist?list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX';
@@ -42,6 +45,15 @@ class Hide_YouTube_Relative_Vidoes_TestCase extends PHPUnit_Framework_TestCase {
 			array()
 		);
 		$this->assertEquals( self::NO_REL_PLAYLIST_EMBED, $result );
+	}
+
+	function test_oembed_video_add_no_rel_and_autoplay() {
+		$result = hide_youtube_related_videos(
+			self::ORIG_VIDEO_EMBED,
+			self::ORIG_VIDEO_URL_W_AUTOPLAY,
+			array()
+		);
+		$this->assertEquals( self::NO_REL_VIDEO_EMBED_W_AUTOPLAY, $result );
 	}
 
 }
