@@ -16,8 +16,10 @@ class Hide_YouTube_Relative_Vidoes_TestCase extends PHPUnit_Framework_TestCase {
 
 	// Example Playlist Details.
 	const ORIG_PLAYLIST_URL     = 'https://www.youtube.com/playlist?list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX';
+	const ORIG_PLAYLIST_EMBED_W_AUTOPLAY = 'https://www.youtube.com/playlist?list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX';
 	const ORIG_PLAYLIST_EMBED   = '<iframe width="500" height="281" src="https://www.youtube.com/embed/videoseries?list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX" frameborder="0" allowfullscreen></iframe>';
 	const NO_REL_PLAYLIST_EMBED = '<iframe width="500" height="281" src="https://www.youtube.com/embed/videoseries?wmode=transparent&amp;rel=0&amp;list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX" frameborder="0" allowfullscreen></iframe>';
+	const NO_REL_PLAYLIST_EMBED_W_AUTOPLAY = '<iframe width="500" height="281" src="https://www.youtube.com/embed/videoseries?wmode=transparent&amp;rel=0&amp;list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX" frameborder="0" allowfullscreen></iframe>';
 
 	protected function setUp() {
 		parent::setUp();
@@ -56,4 +58,12 @@ class Hide_YouTube_Relative_Vidoes_TestCase extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( self::NO_REL_VIDEO_EMBED_W_AUTOPLAY, $result );
 	}
 
+	function test_oembed_playlist_add_no_rel_and_autoplay() {
+		$result = hide_youtube_related_videos(
+			self::ORIG_PLAYLIST_EMBED,
+			self::ORIG_PLAYLIST_EMBED_W_AUTOPLAY,
+			array()
+		);
+		$this->assertEquals( self::NO_REL_PLAYLIST_EMBED_W_AUTOPLAY, $result );
+	}
 }
